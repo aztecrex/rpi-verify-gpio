@@ -21,12 +21,13 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(led_channel, GPIO.OUT)
 GPIO.setup(switch_channel, GPIO.IN)
 
+GPIO.output(led_channel,GPIO.HIGH)
 GPIO.wait_for_edge(switch_channel, GPIO.FALLING)
-
 for i in range(flashes):
-    GPIO.output(led_channel,GPIO.HIGH)
-    time.sleep(on_duration)
     GPIO.output(led_channel,GPIO.LOW)
+    time.sleep(on_duration)
+    GPIO.output(led_channel,GPIO.HIGH)
     time.sleep(off_duration)
+
 GPIO.cleanup()
 
