@@ -6,7 +6,8 @@ import RPi.GPIO as GPIO
 import time
 
 # LED channel
-channel = 21
+led_channel = 21
+switch_channel = 26
 
 # how many times to flash
 flashes = 20
@@ -16,12 +17,16 @@ on_duration = .1
 off_duration = .1
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.OUT)
+
+GPIO.setup(led_channel, GPIO.OUT)
+GPIO.setup(switch_channel, GPIO.IN)
+
+GPIO.wait_for_edge(switch_channel, GPIO.FALLING)
 
 for i in range(flashes):
-    GPIO.output(channel,GPIO.HIGH)
+    GPIO.output(led_channel,GPIO.HIGH)
     time.sleep(on_duration)
-    GPIO.output(channel,GPIO.LOW)
+    GPIO.output(led_channel,GPIO.LOW)
     time.sleep(off_duration)
 GPIO.cleanup()
 
