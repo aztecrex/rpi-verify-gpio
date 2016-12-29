@@ -1,15 +1,25 @@
 # Check if Pi GPIO works at all
 
-Just got my first Pi a couple of weeks ago. Fun as a tiny computer but should
-be even more fun when it interacts with the real world. This should get us
-some _blinkin' lights_ .
+This just checks that I can do GPIO input and output on the Raspberry Pi 3.
 
 ## Test Circuit
 
-LED in series with 220 ohm resistor (https://aztecrex.github.io/rpi-verify-gpio/) .
+Output: LED in series with 220 ohm resistor
+
+Input: momentary switch with pull-up and debounce.  Debounce is not necessary
+for this program but I am using this configuration in another project.
+To adjust the debounce, I used `gpio wfi` in a loop in Bash and kept adding
+5pF capacitors until I liked the result. I think it's about 75 ms as it is right
+now. I still get a spurious trigger occassionally so maybe another 5 pF, bringing
+the delay to about 100 ms would make it better.
+
+[Circuit and breadboard](https://aztecrex.github.io/rpi-verify-gpio/) .
 
 ## Run It
 
 0. `python verify-gpio.py`
+0. expect the LED to turn on
 0. press the button
 0. expect LED to flash
+0. expect the LED to turn off as the GPIO is reset
+
