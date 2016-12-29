@@ -10,7 +10,6 @@ LED in series with 220 ohm resistor (https://aztecrex.github.io/rpi-verify-gpio/
 
 ## Run It
 
-```bash
-python verify-gpio.py
-```
-
+0. python verify-gpio.py
+0. press the button
+0. expect LED to flash
